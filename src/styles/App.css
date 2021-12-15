@@ -1,12 +1,3 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -34,5 +25,24 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+.is-dark-mode {
+  --black: white;
+  --white: #273542;
+  --background: #1a2833;
+}
+
+.is-light-mode {
+  --black: #111517;
+  --white: white;
+  --background: #fafafa;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --black: white;
+    --white: #273542;
+    --background: #1a2833;
   }
 }
