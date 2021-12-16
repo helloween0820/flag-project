@@ -24,6 +24,7 @@ export const CountryPages = () => {
       .get(`https://restcountries.com/v2/name/${name}`)
       .then((response) => {
         setPaises(response.data);
+        console.log(response.data);
       })
 
       .catch(() => {
@@ -36,14 +37,6 @@ export const CountryPages = () => {
         <Link to="/" className="link">
           <h1 className="text">Where in the world?</h1>
         </Link>
-        <div className="dark-mode">
-          <p>
-            <span className="moon">
-              <FontAwesomeIcon icon={faMoon} className="moonn" />
-            </span>
-            Dark Mode
-          </p>
-        </div>
       </div>
       <div>
         {paises.map(

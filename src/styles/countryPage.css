@@ -82,6 +82,7 @@ h1 {
   width: 550px;
   height: 400px;
   box-shadow: 2px 4px 60px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
 }
 .backs {
   position: absolute;

@@ -8,6 +8,7 @@ import axios from "axios";
 import { Paises, Region } from "../interface/paises";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import currencyFormatter from "currency-formatter";
 
 export const CountryList = () => {
   const [countryList, setCountryList] = useState<Paises[]>([]);
@@ -70,21 +71,19 @@ export const CountryList = () => {
       mq.removeListener(changeMedia);
     };
   }, []);
+  const handleReturn = () => {
+    return;
+  };
 
+  const formatNumber = (number: number) => {
+    return new Intl.NumberFormat().format(number);
+  };
   return (
     <div>
       <div className="box">
         <Link to="/" className="link">
           <h1 className="text">Where in the world?</h1>
         </Link>
-        <div className="dark-mode">
-          <p className="p" onClick={changeMedia}>
-            <span className="moon">
-              <FontAwesomeIcon icon={faMoon} className="moonn" />
-            </span>
-            Dark Mode
-          </p>
-        </div>
       </div>
 
       <div className="input">
@@ -96,10 +95,8 @@ export const CountryList = () => {
                 setContinenteSelec(e.target.value);
                 console.log(e.target.value);
 
-                const America = paises.filter(
-                  (i) =>
-                    i.region.includes(e.target.value) ||
-                    (i.region !== e.target.value && setCountryList(countryList))
+                const America = paises.filter((i) =>
+                  i.region.includes(e.target.value)
                 );
 
                 {
@@ -108,7 +105,7 @@ export const CountryList = () => {
                 }
               }}
             >
-              <option> filtrar por region </option>
+              <option onClick={handleReturn}> filtrar por region </option>
               {continente.map((i) => {
                 return <option value={i}> {i} </option>;
               })}
@@ -143,7 +140,7 @@ export const CountryList = () => {
                 flag={flag}
                 name={name}
                 key={name}
-                population={population}
+                population={formatNumber(population)}
                 region={region}
                 capital={capital}
               />

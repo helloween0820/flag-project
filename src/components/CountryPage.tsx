@@ -7,6 +7,7 @@ import React from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import "../styles/countryPage.css";
+import currencyFormatter from "currency-formatter";
 
 export const CountryPage = ({
   name,
@@ -22,8 +23,15 @@ export const CountryPage = ({
   borders = [],
 }: any) => {
   const navigate = useNavigate();
+
   const handleClick = () => {
-    navigate("/CountryList");
+    navigate(`/CountryList`);
+  };
+  const handleCountry = () => {
+    navigate(`/CountryList`);
+  };
+  const formatNumber = (number: number) => {
+    return new Intl.NumberFormat().format(number);
   };
   return (
     <div className="conteiner">
@@ -43,7 +51,7 @@ export const CountryPage = ({
                 <strong>Native Name:</strong> {nativeName}
               </p>
               <p>
-                <strong>Population:</strong> {population}
+                <strong>Population:</strong> {formatNumber(population)}
               </p>
               <p>
                 <strong>Region:</strong> {region}
@@ -74,7 +82,9 @@ export const CountryPage = ({
             <strong>Border Countries:</strong>
           </p>
           {borders.map((item: any) => (
-            <button className="border-item">{item}</button>
+            <button className="border-item" onClick={handleCountry}>
+              {item}
+            </button>
           ))}
         </div>
       </div>
